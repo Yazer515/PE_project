@@ -1,2 +1,2 @@
 print("Hello world!")
-print("Its the project for PE")
+print("It's the project for PE")
