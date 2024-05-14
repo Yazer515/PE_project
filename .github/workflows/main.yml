@@ -10,12 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-    steps:
-      - name: Stop Previous Bot
-        uses: actions/stop-previous-runs@v2
-        with:
-          access_token: ${{secrets.GITHUB_TOKEN}}
-          
+    steps:         
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
