@@ -20,5 +20,5 @@ jobs:
 
     - name: Run script with secret
       env:
-        MY_SECRET: ${{ secrets.BOT_TOKEN }}
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       run: python main.py
