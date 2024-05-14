@@ -4,15 +4,17 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
-    - name: Build Docker container
-      run: docker build -t my-docker-container .
-      
-    - name: Run Docker container
-      run: docker run -d --name my-container -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} my-docker-container
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t my-image .
+
+      - name: Push Docker image to Docker Hub
+        run: docker push my-image
+
+      - name: Run Docker container in the background
+        run: docker run -d --name my-container -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} my-docker-container
