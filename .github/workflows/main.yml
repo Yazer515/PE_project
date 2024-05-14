@@ -20,4 +20,4 @@ jobs:
       run: docker build . --platform linux/amd64 -t my-docker-image
 
     - name: Run Docker container
-      run: docker run -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} my-docker-image
+      run: docker run -d -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} my-docker-image
