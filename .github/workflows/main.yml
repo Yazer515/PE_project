@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -20,4 +20,4 @@ jobs:
       run: docker build . --platform linux/amd64 -t my-docker-image
 
     - name: Run Docker container
-      run: docker run -d -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} my-docker-image
+      run: docker run -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} my-docker-image
