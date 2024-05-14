@@ -13,8 +13,5 @@ jobs:
       - name: Build Docker image
         run: docker build -t my-image .
 
-      - name: Push Docker image to Docker Hub
-        run: docker push my-image
-
       - name: Run Docker container in the background
         run: docker run -d --name my-container -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} my-docker-container
