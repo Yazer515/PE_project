@@ -1,34 +1,27 @@
-name: Stop Actions and Run Script
-
+name: Stop and Run Actions on Push to main
 on:
   push:
     branches:
       - main
 
 jobs:
-  stopactions:
+  stop_and_run_actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Stop all running actions
-        run: echo "::stop-commands::"
+      - name: Stop currently running GitHub Actions
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  runscript:
-    runs-on: ubuntu-latest
-    env:
-      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
+      - name: Set up Python environment
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
 
-      - name: Run Python script
-        run: |
-          python main.py $BOT_TOKEN
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-      - name: Clean up
-        run: |
-          rm -rf $BOT_TOKEN
+      - name: Run script with BOT_TOKEN
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: python main.py
