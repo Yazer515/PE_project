@@ -14,8 +14,5 @@ RUN /bin/bash -c "source venv/bin/activate"
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Set the BOT_TOKEN environment variable
-ENV BOT_TOKEN=${BOT_TOKEN}
-
 # Run the Python script
 CMD [ "python", "main.py" ]

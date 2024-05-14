@@ -5,7 +5,7 @@ import telebot
 
 load_dotenv()
 
-key = os.getenv("BOT_TOKEN")
+key = os.environ["BOT_TOKEN"]
 
 bot = telebot.TeleBot(key)
   
